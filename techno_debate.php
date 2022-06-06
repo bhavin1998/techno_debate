@@ -135,6 +135,9 @@ function techno_debate_xyz() {
                 <h1><?php _e( 'Use below shortcodes', 'technodebate' ); ?></h1>
                 <b>[display_technodebate_post]</b> : <span>Display all post at front-end site</span>
             </div>
+            <div>
+                <b>[create_technodebate_post]</b> : <span>Create post at front-end site</span>
+            </div>
             <?php
         }
 
@@ -145,6 +148,11 @@ function techno_debate_xyz() {
         add_shortcode("display_technodebate_post","display_technodebate_post_func");
         function display_technodebate_post_func() {
             include('template-parts/technodebatepost.php');
+        }
+
+        add_shortcode("create_technodebate_post","create_technodebate_post_func");
+        function create_technodebate_post_func(){
+            include('template-parts/createtechnodebate.php');
         }
         /* End display custom page shortcode */
 
