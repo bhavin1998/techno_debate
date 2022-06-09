@@ -9,7 +9,13 @@
 
 ob_start();
 error_reporting(0);
-flush_rewrite_rules(); 
+// flush_rewrite_rules(); 
+// die (plugin_dir_path( __FILE__ ) . 'single-my_product.php');
+
+die (plugin_dir_path(__FILE__));
+
+
+// die(plugin_url('1212.php',__FILE__))
 
 /* Start Create custom plugin Techno Debate */
 add_action( 'init', 'techno_debate_xyz' );
@@ -60,16 +66,34 @@ function techno_debate_xyz() {
 
     function enqueueAdmin()
     {
-        wp_enqueue_script('very-descriptive-name', plugins_url('js/customjs.js', __FILE__), array('jquery'), '1.0', true);
-    	wp_enqueue_style('very-exciting-name', plugins_url('css/customcss.css', __FILE__), null, '1.0');
+        // wp_enqueue_script( 'jquerymin-script', 'http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array( 'jquery' ),null,false );
+        // wp_enqueue_script( 'jqueryui-script', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js', array( 'jquery' ),null,false );
+        // wp_enqueue_script( 'signature-script', plugin_dir_path( __FILE__ ).'js/jquery.signature.js', array( 'jquery' ),null,false );
+        // wp_enqueue_script( 'customjs-script', plugin_dir_path( __FILE__ ).'js/customjs.js', array( 'jquery' ),null,false );
+
+        // wp_enqueue_style('jqueryui-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css', array(), '0.1.0', 'all');
+        // wp_enqueue_style('style-signature', plugin_dir_path( __FILE__ ).'css/jquery.signature.css', array(), '0.1.0', 'all');
+        // wp_enqueue_style('customstyle-signature',plugin_dir_path( __FILE__ ).'css/customcss.css', array(), '0.1.0', 'all');
+
+        // wp_enqueue_script('very-descriptive-name', plugins_url('js/customjs.js', __FILE__), array('jquery'), '1.0', true);
+    	// wp_enqueue_style('very-exciting-name', plugins_url('css/customcss.css', __FILE__), null, '1.0');
         
     }
     add_action('admin_enqueue_scripts', 'enqueueAdmin');
 
     function enqueuePublic()
     {
-        wp_enqueue_script('very-descriptive-name', plugins_url('js/customjs.js', __FILE__), array('jquery'), '1.0', true);
-    	wp_enqueue_style('very-exciting-name', plugins_url('css/customcss.css', __FILE__), null, '1.0');
+        // wp_enqueue_script('very-descriptive-name', plugins_url('js/customjs.js', __FILE__), array('jquery'), '1.0', true);
+    	// wp_enqueue_style('very-exciting-name', plugins_url('css/customcss.css', __FILE__), null, '1.0');
+
+        wp_enqueue_script( 'jquerymin-script', 'http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array( 'jquery' ),null,false );
+        wp_enqueue_script( 'jqueryui-script', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js', array( 'jquery' ),null,false );
+        wp_enqueue_script( 'signature-script', plugin_dir_path(__FILE__).'js/jquery.signature.js', array( 'jquery' ),null,false );
+        wp_enqueue_script( 'customjs-script', plugin_dir_path(__FILE__).'js/customjs.js', array( 'jquery' ),null,false );
+
+        wp_enqueue_style('jqueryui-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css', array(), '0.1.0', 'all');
+        wp_enqueue_style('style-signature', plugin_dir_path(__FILE__).'css/jquery.signature.css', array(), '0.1.0', 'all');
+        wp_enqueue_style('customstyle-signature',plugin_dir_path(__FILE__).'css/customcss.css', array(), '0.1.0', 'all');
         
     }
     add_action('wp_enqueue_scripts', 'enqueuePublic');
@@ -155,6 +179,19 @@ function techno_debate_xyz() {
             include('template-parts/createtechnodebate.php');
         }
         /* End display custom page shortcode */
+
+        add_shortcode("techno_digital_signature","techno_digital_signature_func1");
+        function techno_digital_signature_func1(){
+            include('template-parts/digitalsignaturecheck.php');
+        }
+
+        add_action( 'wp_ajax_nopriv_add_user_signaturedata', 'add_user_signature1' );
+        add_action( 'wp_ajax_add_user_signaturedata', 'add_user_signature1' );
+
+        function add_user_signature1() {
+            echo "ajax called...";
+            die;
+        }
 
 
 

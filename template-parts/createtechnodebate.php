@@ -1,9 +1,9 @@
 <?php
-flush_rewrite_rules();
+// flush_rewrite_rules();
 ?>
 
 <?php 
-
+get_header();
     // $submit = $_POST['submit'];
     // $_POST = array();
 

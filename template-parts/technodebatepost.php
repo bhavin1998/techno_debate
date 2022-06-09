@@ -1,7 +1,7 @@
 <?php
 
-// get_header();
-flush_rewrite_rules();
+get_header();
+// flush_rewrite_rules();
 global $wp_query;
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
@@ -27,4 +27,4 @@ endif;
 
 
 wp_reset_postdata();
-// get_footer();
+get_footer();
