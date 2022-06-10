@@ -12,7 +12,7 @@ error_reporting(0);
 // flush_rewrite_rules(); 
 // die (plugin_dir_path( __FILE__ ) . 'single-my_product.php');
 
-die (plugin_dir_path(__FILE__));
+// die (plugin_dir_path(__FILE__));
 
 
 // die(plugin_url('1212.php',__FILE__))
@@ -88,12 +88,12 @@ function techno_debate_xyz() {
 
         wp_enqueue_script( 'jquerymin-script', 'http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array( 'jquery' ),null,false );
         wp_enqueue_script( 'jqueryui-script', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js', array( 'jquery' ),null,false );
-        wp_enqueue_script( 'signature-script', plugin_dir_path(__FILE__).'js/jquery.signature.js', array( 'jquery' ),null,false );
-        wp_enqueue_script( 'customjs-script', plugin_dir_path(__FILE__).'js/customjs.js', array( 'jquery' ),null,false );
+        wp_enqueue_script( 'signature-script', plugin_dir_url( __FILE__ ).'js/jquery.signature.js', array( 'jquery' ),'1.0',false );
+        wp_enqueue_script( 'customjs-script', plugin_dir_url( __FILE__ ).'js/customjs.js', array( 'jquery' ),'1.0',false );
 
         wp_enqueue_style('jqueryui-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css', array(), '0.1.0', 'all');
-        wp_enqueue_style('style-signature', plugin_dir_path(__FILE__).'css/jquery.signature.css', array(), '0.1.0', 'all');
-        wp_enqueue_style('customstyle-signature',plugin_dir_path(__FILE__).'css/customcss.css', array(), '0.1.0', 'all');
+        wp_enqueue_style('style-signature', plugin_dir_url( __FILE__ ).'css/jquery.signature.css', array(), '0.1.0', 'all');
+        wp_enqueue_style('customstyle-signature',plugin_dir_url( __FILE__ ).'css/customcss.css', array(), '0.1.0', 'all');
         
     }
     add_action('wp_enqueue_scripts', 'enqueuePublic');
@@ -189,7 +189,9 @@ function techno_debate_xyz() {
         add_action( 'wp_ajax_add_user_signaturedata', 'add_user_signature1' );
 
         function add_user_signature1() {
-            echo "ajax called...";
+            // include('template-parts/digitalsignaturecheck.php');
+            echo $_POST['svgdata'];
+            // echo "signature avasssilable";
             die;
         }
 

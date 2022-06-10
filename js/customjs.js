@@ -1,5 +1,5 @@
 jQuery(document).ready(function(){
-    jQuery(".technoform")[0].reset;
+    // jQuery(".technoform")[0].reset;
 });
 
 jQuery(function() {
@@ -14,7 +14,6 @@ jQuery(function() {
 	});
 	jQuery('#json').click(function() {
 		alert(sig.signature('toJSON'));
-		
 	});
 });
 
@@ -24,7 +23,8 @@ jQuery(document).on("click","#svg",function(e){
 	var testsvg = sig.signature('toSVG');
 	jQuery("#signaturedata").append(testsvg);
 	if(jQuery("polyline").length == 0) {
-				alert("ajax not call");
+		alert("ajax not call");
+		jQuery("#signatureinputdata").removeAttr(value);
 	}
 	else {
 		jQuery.ajax({
@@ -35,9 +35,10 @@ jQuery(document).on("click","#svg",function(e){
 				svgdata: testsvg.replace(/(\r\n|\n|\r)/gm, "")
 			},
 			success: function(data) {
-				alert ("ajax call");
-				alert(testsvg.replace(/(\r\n|\n|\r)/gm, ""));
-				console.log(testsvg.replace(/(\r\n|\n|\r)/gm, ""));
+				jQuery("#signatureinputdata").removeAttr("value");
+				// alert ("ajax call");
+				jQuery("#signatureinputdata").val(data);
+				// console.log(data);
 			}
 		});
 	}
@@ -46,5 +47,6 @@ jQuery(document).on("click","#svg",function(e){
 jQuery(document).on("click","#clear",function(e){
 	e.preventDefault();
 	alert("clearing...");
+	jQuery("#signatureinputdata").removeAttr("value");
 	jQuery("#signaturedata").empty();
 });
