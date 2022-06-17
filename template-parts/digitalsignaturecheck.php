@@ -12,10 +12,11 @@
     <p>Your Digital Signature:</p>
     <div id="sig"></div>
     <div id="digitalsignbutton">
-        <p style="clear: both;">
-            <button id="disable">Disable</button> 
-            <button id="clear">Clear</button> 
-            <button id="svg">Confirm</button>
+        <p>
+            <!-- <button type="button" id="disable">Disable</button>  -->
+            <button type="button" id="clear">Clear</button> 
+            <button type="button" id="svg">Confirm</button>
+            <label><input type="radio" name="syncFormat" value="PNG"> PNG</label>
             <input type="hidden" name="adminajax" id="adminajax" value="<?php echo admin_url( 'admin-ajax.php' ); ?>">
             <input type="hidden" name="signatureinputdata" id="signatureinputdata">
         </p>

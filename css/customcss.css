@@ -11,3 +11,19 @@ div.allformfield input {
 div#sig canvas {
     border: 1px solid black !important;
 }
+
+
+
+
+ .disabled.disabled, .disabled:disabled {
+    opacity: 0.65;
+  }
+  
+  .disabled:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  
+  .disabled.disabled,
+  .disabled:disabled .disabled {
+    pointer-events: none;
+  }

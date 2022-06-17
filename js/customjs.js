@@ -1,6 +1,4 @@
-jQuery(document).ready(function(){
-    // jQuery(".technoform")[0].reset;
-});
+jQuery(document).on("click",)
 
 jQuery(function() {
 	var sig = jQuery('#sig').signature();
@@ -15,12 +13,21 @@ jQuery(function() {
 	jQuery('#json').click(function() {
 		alert(sig.signature('toJSON'));
 	});
+
+	jQuery('input[name="syncFormat"]').change(function() { 
+		var syncFormat = $('input[name="syncFormat"]:checked').val(); 
+		jQuery('#sig').signature('option', 'syncFormat', syncFormat); 
+		alert(jQuery('#sig').signature('option', 'syncFormat', syncFormat));
+	}); 
 });
 
 jQuery(document).on("click","#svg",function(e){
 	e.preventDefault();
-	var sig = jQuery('#sig').signature();
-	var testsvg = sig.signature('toSVG');
+	var sig = jQuery('#sig');
+	// var testsvg = sig.signature('toSVG');
+	var testsvg = sig.signature('getData', 'image');
+	console.log(testsvg);
+	alert(testsvg);
 	jQuery("#signaturedata").append(testsvg);
 	if(jQuery("polyline").length == 0) {
 		alert("ajax not call");
@@ -36,8 +43,10 @@ jQuery(document).on("click","#svg",function(e){
 			},
 			success: function(data) {
 				jQuery("#signatureinputdata").removeAttr("value");
-				// alert ("ajax call");
+
 				jQuery("#signatureinputdata").val(data);
+				jQuery("#svg").addClass("disabled");
+				jQuery("#sig").addClass("disabled");
 				// console.log(data);
 			}
 		});
@@ -47,6 +56,8 @@ jQuery(document).on("click","#svg",function(e){
 jQuery(document).on("click","#clear",function(e){
 	e.preventDefault();
 	alert("clearing...");
+	jQuery("#svg").removeClass("disabled");
+	jQuery("#sig").removeClass("disabled");
 	jQuery("#signatureinputdata").removeAttr("value");
 	jQuery("#signaturedata").empty();
 });

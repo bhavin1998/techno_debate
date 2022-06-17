@@ -4,11 +4,7 @@
 
 <?php 
 get_header();
-// die(get_permalink(183));
-    // $submit = $_POST['submit'];
-    // $_POST = array();
-
-    if(isset($_POST['submit'])) {
+    if(isset($_POST['submitbtn']) && $_POST['signatureinputdata'] != null ) {
         global $user_ID;
         $technoTitle = $_POST['technotitle'];
         $technocontent = $_POST['technocontent'];
@@ -26,6 +22,9 @@ get_header();
         wp_redirect( get_permalink($newpost) );
         exit;
     }
+    else{
+
+    }
 
 ?>
 
@@ -34,6 +33,6 @@ get_header();
         <div><input type="text" name="technotitle" id="technotitle" placeholder="Enter Title" required></div>
         <div><textarea name="technocontent" id="technocontent" cols="30" rows="10" placeholder="Describe your Query & Question" required></textarea></div>
         <div><?php do_shortcode('[techno_digital_signature]'); ?></div>
-        <div><input type="submit" name="submit" value="POST"></div>
+        <div><input type="submit" name="submitbtn" value="POST"></div>
     </div>
 </form>

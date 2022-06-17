@@ -189,11 +189,47 @@ function techno_debate_xyz() {
         add_action( 'wp_ajax_add_user_signaturedata', 'add_user_signature1' );
 
         function add_user_signature1() {
-            // include('template-parts/digitalsignaturecheck.php');
+            global $post;
+        // echo "1212 <pre>".$post->ID;
+            // echo "111".
             echo $_POST['svgdata'];
-            // echo "signature avasssilable";
             die;
         }
+// Add the custom columns to the book post type:
+add_filter( 'manage_technodebate_posts_columns', 'set_custom_edit_book_columns' );
+function set_custom_edit_book_columns($columns) {
+    // unset( $columns['author'] );
+    // $columns['book_author'] = __( 'Author', 'your_text_domain' );
+    // $columns['publisher'] = __( 'Publisher', 'your_text_domain' );
+    $columns['signature'] = __( 'Signature', 'your_text_domain' );
+
+    return $columns;
+}
+
+// Add the data to the custom columns for the book post type:
+add_action( 'manage_technodebate_posts_custom_column' , 'custom_book_column', 10, 2 );
+function custom_book_column( $column, $post_id ) {
+    switch ( $column ) {
+
+        // case 'book_author' :
+        //     $terms = get_the_term_list( $post_id , 'book_author' , '' , ',' , '' );
+        //     if ( is_string( $terms ) )
+        //         echo $terms;
+        //     else
+        //         _e( 'Unable to get author(s)', 'your_text_domain' );
+        //     break;
+
+        // case 'publisher' :
+        //     echo get_post_meta( $post_id , 'publisher' , true ); 
+        //     break;
+
+        case 'signature':
+            // echo "!212121";
+            echo "<div class='thisistest'>".get_post_meta(217,'digital_sign_data',true)."</div>";
+            break;
+
+    }
+}
 
 
 
